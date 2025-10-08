@@ -4,8 +4,7 @@ import random
 
 app = Flask(__name__)
 
-# ใส่ Channel Access Token ของคุณตรงนี้
-LINE_ACCESS_TOKEN = "YOUR_CHANNEL_ACCESS_TOKEN"
+LINE_ACCESS_TOKEN = "67ea1e15a724fae667e6d194c3da94b0"
 
 def reply_message(reply_token, text):
     headers = {
@@ -25,7 +24,6 @@ def webhook():
     reply_token = event["replyToken"]
     user_text = event["message"]["text"]
 
-    # Logic การตอบกลับ
     if user_text == "ดูดวง":
         fortunes = [
             "วันนี้คุณจะโชคดี 🍀",
@@ -34,10 +32,6 @@ def webhook():
             "อาจมีเรื่องให้กังวล แต่จะผ่านไปได้ 💪"
         ]
         reply_message(reply_token, random.choice(fortunes))
-    elif user_text == "สวัสดี":
-        reply_message(reply_token, "สวัสดีครับ KK 👋")
-    elif user_text == "เลขเด็ด":
-        reply_message(reply_token, "เลขนำโชควันนี้คือ 17 ✨")
     else:
         reply_message(reply_token, f"คุณพิมพ์ว่า: {user_text}")
 
